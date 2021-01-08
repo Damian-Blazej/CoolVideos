@@ -1,11 +1,15 @@
 using CoolVideos.Helpers;
+using CoolVideos.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using System;
 
 namespace CoolVideos
 {
@@ -21,10 +25,18 @@ namespace CoolVideos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CoolVideosContext>(
+                opt => opt.UseMySql(Configuration.GetConnectionString("MySQL"),
+                mysqlOptions =>
+                    {
+                        mysqlOptions.ServerVersion(new Version(5, 5, 62), ServerType.MySql);
+                    }
+            ));
 
+            services.AddCors();
             services.AddControllers();
 
-            // In production, the React files will be served from this directory
+            // In production, the Vue files will be served from this directory
             services.AddSpaStaticFiles(options =>
             {
                 options.RootPath = "clientapp/dist";
@@ -48,6 +60,10 @@ namespace CoolVideos
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseRouting();
 
