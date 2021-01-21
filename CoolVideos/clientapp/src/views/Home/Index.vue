@@ -19,26 +19,6 @@
         </div>
         <div class="mt-5">
             <b-container>
-                <div>
-                    <!-- <div class="text-center">
-                        <h2 class="font-weight-bold">Osiągnij z nami sukces</h2>
-                        <b-row class="mt-4 d-flex justify-content-center">
-                            <b-col md="4" class="my-3 w-75">
-                                <img src="../../assets/icons/book.png" class="img-fluid mb-2" style="max-width: 100px;" />
-                                <h5>Ucz się najnowszych technologii, takich jak Python, JavaScipt, czy Machine Learning.</h5>
-                            </b-col>
-                            <b-col md="4" class="my-3 w-75">
-                                <img src="../../assets/icons/tie.png" class="img-fluid mb-2" style="max-width: 100px;" />
-                                <h5>Czerp wiedzę od ekspertów w swojej dziedzinie.</h5>
-                            </b-col>
-                            <b-col md="4" class="my-3 w-75">
-                                <img src="../../assets/icons/id-card.png" class="img-fluid mb-2" style="max-width: 100px;" />
-                                <h5>Dziel się swoją wiedzą z innymi.</h5>
-                            </b-col>
-                            
-                        </b-row>
-                    </div> -->
-                </div>
                 <div class="mt-3 text-center">
                     <h2 class="font-weight-bold">Najnowsze filmy</h2>
                     <div class="d-flex justify-content-center align-items-center flex-wrap mt-4">
@@ -76,7 +56,7 @@
         methods: {
             fetchLatestVideos() {
                 this.$http.get(this.$serverUrl + '/api/video/latest?n=3')
-                    .then(resoult => { this.videos = resoult.data;})
+                    .then(result => { this.videos = result.data;})
             }
         },
         mounted() {
