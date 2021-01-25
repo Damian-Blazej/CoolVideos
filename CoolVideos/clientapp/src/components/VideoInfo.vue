@@ -6,7 +6,7 @@
     <img
       class="img-video-link"
       @click="openVideo"
-      :src="`${$serverUrl}/Resources/Images/${imgSrc}`"
+      :src="`${$serverUrl}Resources/Images/${imgSrc}`"
       style="height: 100px;"
     />
     <h5 class="mb-0">{{ title }}</h5>
@@ -45,7 +45,7 @@ export default {
       this.$router.push({ path: `/video/${this.videoId}` });
     },
     deleteVideo() {
-      this.$http.delete(this.$serverUrl + `/api/video/${this.videoId}`).then(
+      this.$http.delete(`api/video/${this.videoId}`).then(
         response => {
           if (response.ok) this.deleted = true;
         },

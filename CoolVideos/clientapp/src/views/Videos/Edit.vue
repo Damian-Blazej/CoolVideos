@@ -53,7 +53,7 @@
               :src="
                 newImageSrc != null
                   ? newImageSrc
-                  : `${$serverUrl}/Resources/Images/${video.image}`
+                  : `${$serverUrl}Resources/Images/${video.image}`
               "
               style="width: 300px;"
             />
@@ -71,7 +71,7 @@
               :src="
                 newVideoSrc != null
                   ? newVideoSrc
-                  : `${$serverUrl}/Resources/Videos/${video.uri}`
+                  : `${$serverUrl}Resources/Videos/${video.uri}`
               "
               controls
               type="video/mp4"
@@ -128,7 +128,7 @@ export default {
     };
   },
   created() {
-    fetchData(this.$serverUrl + `/api/video/${this.$route.params.id}`).then(
+    fetchData(`video/${this.$route.params.id}`).then(
       res => {
         this.video.id = res.id;
         this.video.userId = res.userId;
@@ -140,7 +140,7 @@ export default {
         this.video.image = res.image;
       }
     );
-    fetchData(this.$serverUrl + "/api/category").then(res => {
+    fetchData("category").then(res => {
       this.categories = res;
     });
   },
@@ -172,7 +172,7 @@ export default {
       }
 
       this.$http
-        .put(this.$serverUrl + `/api/video/${this.video.id}`, this.video)
+        .put(`video/${this.video.id}`, this.video)
         .then(
           response => {
             if (this.newImageFile) {
@@ -208,7 +208,7 @@ export default {
       formData.append("file", file, filename);
 
       this.$http
-        .post(this.$serverUrl + `/api/file/${fileType}`, formData)
+        .post(`file/${fileType}`, formData)
         .then(res => {
           return res;
         })

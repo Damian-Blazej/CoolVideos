@@ -72,7 +72,7 @@
             :key="video.videoId"
             :video-id="video.id"
             :title="video.title"
-            :img-src="`${$serverUrl}/Resources/Images/${video.image}`"
+            :img-src="`${$serverUrl}Resources/Images/${video.image}`"
             :img-alt="video.title + ' image'"
             :author="video.user.firstName + ' ' + video.user.lastName"
           >
@@ -112,7 +112,7 @@ export default {
     VideoCard
   },
   created() {
-    this.$http.get(this.$serverUrl + "/api/category").then(res => {
+    this.$http.get("category").then(res => {
       this.categories = this.categories.concat(res.data);
     });
 
@@ -164,8 +164,7 @@ export default {
       this.currentCategory = category;
       this.currentQuery = query;
       let url =
-        this.$serverUrl +
-        `/api/video/search?categoryID=${category}&pageSize=${pageSize}&pageNumber=${pageNum}`;
+        `video/search?categoryID=${category}&pageSize=${pageSize}&pageNumber=${pageNum}`;
       if (searchQuery) url += "&query=" + searchQuery;
 
       this.$http.get(url).then(res => {

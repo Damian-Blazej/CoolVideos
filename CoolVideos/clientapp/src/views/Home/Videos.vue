@@ -39,7 +39,7 @@
               :key="video.videoId"
               :video-id="video.id"
               :title="video.title"
-              :img-src="`${$serverUrl}/Resources/Images/${video.image}`"
+              :img-src="`${$serverUrl}Resources/Images/${video.image}`"
               :img-alt="video.title + ' image'"
               :author="video.user.firstName + ' ' + video.user.lastName"
             >
@@ -78,7 +78,7 @@
               :key="video.id"
               :video-id="video.id"
               :title="video.title"
-              :img-src="`${$serverUrl}/Resources/Images/${video.image}`"
+              :img-src="`${$serverUrl}Resources/Images/${video.image}`"
               :img-alt="video.title + ' image'"
               :author="video.user.firstName + ' ' + video.user.lastName"
             >

@@ -14,13 +14,15 @@ Vue.use(IconsPlugin);
 Vue.use(VueResource);
 Vue.use(Vuelidate);
 Vue.config.productionTip = false;
-Vue.prototype.$serverUrl = "http://localhost:44338";
+Vue.prototype.$serverUrl = "http://localhost:44338/";
 
 //Ten middleware dodaje header z tokenem
 Vue.http.interceptors.push((request, next) => {
   if (store.getters.isLogged) {
     request.headers.set("Authorization", "Bearer " + store.getters.token);
   }
+
+  request.url = Vue.prototype.$serverUrl + "api/" + request.url;
 
   next(response => {
     const statusCode = response.status;

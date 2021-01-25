@@ -3,7 +3,7 @@
     <div class="mt-5 d-flex flex-column align-items-center">
       <h2 class="mb-4">{{ video.title }}</h2>
       <video
-        :src="`${$serverUrl}/Resources/Videos/${video.uri}`"
+        :src="`${$serverUrl}Resources/Videos/${video.uri}`"
         controls
         width="100%"
         height="auto"
@@ -40,7 +40,7 @@ export default {
     };
   },
   created() {
-    fetchData(this.$serverUrl + "/api/video/" + this.$route.params.index).then(
+    fetchData("api/video/" + this.$route.params.index).then(
       data => {
         if (data.status === 404) {
           this.$router.push({ name: "PageNotFound" });
@@ -58,7 +58,7 @@ export default {
     },
     giveLike: function() {
       this.$http
-        .post(this.$serverUrl + "/api/like", {
+        .post("api/like", {
           userID: this.$store.getters.userId,
           videoID: this.video.id
         })
@@ -75,7 +75,7 @@ export default {
     },
     deleteLike: function() {
       this.$http
-        .delete(this.$serverUrl + "/api/like", {
+        .delete("like", {
           body: {
             userID: this.$store.getters.userId,
             videoID: this.video.id

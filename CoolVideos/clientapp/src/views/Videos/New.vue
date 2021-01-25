@@ -53,7 +53,7 @@
               :src="
                 newImageSrc != null
                   ? newImageSrc
-                  : `${$serverUrl}/Resources/Images/${video.image}`
+                  : `${$serverUrl}Resources/Images/${video.image}`
               "
               style="width: 300px;"
             />
@@ -72,7 +72,7 @@
               :src="
                 newVideoSrc != null
                   ? newVideoSrc
-                  : `${$serverUrl}/Resources/Videos/${video.uri}`
+                  : `${$serverUrl}Resources/Videos/${video.uri}`
               "
               controls
               type="video/mp4"
@@ -130,7 +130,7 @@ export default {
   },
   created() {
     this.video.userId = this.$store.getters.userId;
-    this.$http.get(this.$serverUrl + "/api/category").then(res => {
+    this.$http.get("api/category").then(res => {
       this.categories = res.data;
     });
   },
@@ -160,7 +160,7 @@ export default {
         this.video.uri = this.video.id + ".mp4";
       }
 
-      this.$http.post(this.$serverUrl + `/api/video`, this.video).then(
+      this.$http.post("video", this.video).then(
         response => {
           const id = response.data.id;
 
@@ -187,7 +187,7 @@ export default {
       formData.append("file", file, filename);
 
       this.$http
-        .post(this.$serverUrl + `/api/file/${fileType}`, formData)
+        .post(`file/${fileType}`, formData)
         .then(res => {
           return res;
         })

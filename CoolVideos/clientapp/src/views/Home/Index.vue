@@ -37,7 +37,7 @@
               :key="video.videoId"
               :video-id="video.id"
               :title="video.title"
-              :img-src="`${$serverUrl}/Resources/Images/${video.image}`"
+              :img-src="`${$serverUrl}Resources/Images/${video.image}`"
               :img-alt="video.title + ' image'"
               :author="video.user.firstName + ' ' + video.user.lastName"
             >
@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     fetchLatestVideos() {
-      this.$http.get(this.$serverUrl + "/api/video/latest?n=3").then(result => {
+      this.$http.get("api/video/latest?n=3").then(result => {
         this.videos = result.data;
       });
     }
