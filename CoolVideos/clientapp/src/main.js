@@ -19,10 +19,7 @@ Vue.prototype.$serverUrl = "http://localhost:44338";
 //Ten middleware dodaje header z tokenem
 Vue.http.interceptors.push((request, next) => {
   if (store.getters.isLogged) {
-    request.headers.set(
-      "Authorization",
-      "Bearer " + store.getters.token
-    );
+    request.headers.set("Authorization", "Bearer " + store.getters.token);
   }
 
   next(response => {
