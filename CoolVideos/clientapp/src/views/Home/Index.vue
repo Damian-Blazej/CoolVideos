@@ -10,7 +10,7 @@
               <h2>Dołącz do nas całkowicie za darmo! 🤑</h2>
               <b-button
                 id="loginButton"
-                v-if="!isLogged"
+                v-if="!this.$store.getters.isLogged"
                 squared
                 variant="primary"
                 size="lg"
@@ -51,14 +51,12 @@
 
 <script>
 import VideoCard from "../../components/VideoCard";
-import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
   components: {
     VideoCard
   },
-  computed: mapGetters(["isLogged"]),
   data() {
     return {
       videos: null

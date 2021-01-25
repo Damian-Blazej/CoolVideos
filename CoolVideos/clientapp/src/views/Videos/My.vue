@@ -43,10 +43,9 @@ export default {
       userID: 1
     };
   },
-  created() {
-    this.userID = this.$store.getters.userId;
+  beforeCreate() {
     this.$http
-      .get(`video/search?pageNumber=1&pageCount=15&userID=${this.userID}`)
+      .get(`video/search?pageNumber=1&pageCount=15&userID=${this.$store.getters.userId}`)
       .then(res => {
         this.videos = res.data.videos;
       });

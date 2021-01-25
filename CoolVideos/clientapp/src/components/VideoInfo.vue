@@ -17,7 +17,10 @@
       <b-button @click="showConfirmBox" variant="danger" pill
         ><b-icon-trash></b-icon-trash> Delete</b-button
       >
-      <b-button variant="primary" pill :to="{ name: 'EditVideo', params: { id: videoId.toString() } }"
+      <b-button
+        variant="primary"
+        pill
+        :to="{ name: 'EditVideo', params: { id: videoId.toString() } }"
         ><b-icon-file-text></b-icon-file-text> Edit</b-button
       >
     </div>
@@ -42,7 +45,10 @@ export default {
   },
   methods: {
     openVideo: function() {
-      this.$router.push({ name: "Video", params: { index: this.videoId.toString() } });
+      this.$router.push({
+        name: "Video",
+        params: { index: this.videoId.toString() }
+      });
     },
     deleteVideo() {
       this.$http.delete(`video/${this.videoId}`).then(
