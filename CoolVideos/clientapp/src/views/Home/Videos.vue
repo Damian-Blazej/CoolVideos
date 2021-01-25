@@ -101,7 +101,6 @@
 </template>
 
 <script>
-import { fetchData } from "@/functions/fetch.js";
 import VideoCard from "../../components/VideoCard";
 
 export default {
@@ -110,11 +109,11 @@ export default {
     VideoCard
   },
   created() {
-    fetchData(this.$serverUrl + "/api/video/latest?n=6").then(data => {
-      this.videos = data;
+    this.$http.get("video/latest?n=6").then(res => {
+      this.videos = res.data;
     });
-    fetchData(this.$serverUrl + "/api/category").then(data => {
-      this.categories = data;
+    this.$http.get("category").then(res => {
+      this.categories = res.data;
     });
     this.changeCategory(1);
   },
@@ -131,11 +130,9 @@ export default {
   methods: {
     changeCategory: function(id) {
       this.selectedCategory = id;
-      fetchData(this.$serverUrl + `/api/video/category/${id}?n=3`).then(
-        data => {
-          this.videosByCategory = data;
-        }
-      );
+      this.$http.get(`video/category/${id}?n=3`).then(res => {
+        this.videosByCategory = res.data;
+      });
     },
     searchVideosByQuery() {
       this.$router.push({

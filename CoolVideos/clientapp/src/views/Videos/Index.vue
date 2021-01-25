@@ -30,8 +30,6 @@
 </template>
 
 <script>
-import { fetchData } from "@/functions/fetch.js";
-
 export default {
   data() {
     return {
@@ -40,16 +38,14 @@ export default {
     };
   },
   created() {
-    fetchData("api/video/" + this.$route.params.index).then(
-      data => {
-        if (data.status === 404) {
-          this.$router.push({ name: "PageNotFound" });
-        } else {
-          this.video = data;
-          this.checkIfUserLikedVideo();
-        }
+    this.$http.get("video/" + this.$route.params.index).then(res => {
+      if (res.status === 404) {
+        this.$router.push({ name: "PageNotFound" });
+      } else {
+        this.video = res.data;
+        this.checkIfUserLikedVideo();
       }
-    );
+    });
   },
   methods: {
     toggleLike: function() {
@@ -58,7 +54,7 @@ export default {
     },
     giveLike: function() {
       this.$http
-        .post("api/like", {
+        .post("like", {
           userID: this.$store.getters.userId,
           videoID: this.video.id
         })
@@ -93,10 +89,9 @@ export default {
         );
     },
     checkIfUserLikedVideo: function() {
-      fetchData(
-        this.$serverUrl +
-          `/api/like/video/${this.video.id}/user/${this.$store.getters.userId}`
-      ).then(res => (this.didUserLikeVideo = res.liked));
+      this.$http
+        .get(`like/video/${this.video.id}/user/${this.$store.getters.userId}`)
+        .then(res => (this.didUserLikeVideo = res.data.liked));
     }
   }
 };

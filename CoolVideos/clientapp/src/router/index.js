@@ -9,7 +9,6 @@ import Register from "../views/Auth/Register.vue";
 import MyVideos from "../views/Videos/My.vue";
 import EditVideo from "../views/Videos/Edit.vue";
 import NewVideo from "../views/Videos/New.vue";
-import { fetchData } from "../functions/fetch";
 import store from "../store/index";
 import Error from "../views/Error/Error.vue";
 
@@ -78,15 +77,13 @@ const routes = [
     name: "EditVideo",
     component: EditVideo,
     beforeEnter: (to, from, next) => {
-      fetchData("http://localhost:44338/api/video/" + to.params.id).then(
-        data => {
-          if (data.userId.toString() === store.getters.userId) {
-            next();
-          } else {
-            next("/error/403");
-          }
+      Vue.http.get(`video/${to.params.id}`).then(res => {
+        if (res.data.userId.toString() === store.getters.userId) {
+          next();
+        } else {
+          next("/error/403");
         }
-      );
+      });
     }
   },
   {

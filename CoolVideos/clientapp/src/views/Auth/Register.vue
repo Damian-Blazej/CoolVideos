@@ -152,7 +152,7 @@ export default {
       if (this.$v.$invalid) {
         this.submitStatus = "ERROR";
       } else {
-        this.$http.post("api/user", this.credential).then(resoult => {
+        this.$http.post("user", this.credential).then(resoult => {
           if (resoult.status == 204) {
             this.$router.push({ name: "Login" });
           } else {

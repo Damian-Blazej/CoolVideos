@@ -130,7 +130,7 @@ export default {
   },
   created() {
     this.video.userId = this.$store.getters.userId;
-    this.$http.get("api/category").then(res => {
+    this.$http.get("category").then(res => {
       this.categories = res.data;
     });
   },

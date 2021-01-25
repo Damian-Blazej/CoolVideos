@@ -104,7 +104,6 @@
 </template>
 
 <script>
-import { fetchData } from "../../functions/fetch";
 import { required, maxLength } from "vuelidate/lib/validators";
 
 export default {
@@ -128,8 +127,10 @@ export default {
     };
   },
   created() {
-    fetchData(`video/${this.$route.params.id}`).then(
-      res => {
+    this.$http
+      .get(`video/${this.$route.params.id}`)
+      .then(res => res.data)
+      .then(res => {
         this.video.id = res.id;
         this.video.userId = res.userId;
         this.video.uri = res.uri;
@@ -138,10 +139,10 @@ export default {
         this.video.description = res.description;
         this.video.likes = res.likes;
         this.video.image = res.image;
-      }
-    );
-    fetchData("category").then(res => {
-      this.categories = res;
+      });
+
+    this.$http.get("category").then(res => {
+      this.categories = res.data;
     });
   },
   computed: {
@@ -171,32 +172,26 @@ export default {
         this.video.uri = this.video.id + ".mp4";
       }
 
-      this.$http
-        .put(`video/${this.video.id}`, this.video)
-        .then(
-          response => {
-            if (this.newImageFile) {
-              this.uploadFile(
-                this.newImageFile,
-                "image",
-                this.video.id + ".jpeg"
-              );
-            }
-
-            if (this.newVideoFile)
-              this.uploadFile(
-                this.newVideoFile,
-                "video",
-                this.video.id + ".mp4"
-              );
-
-            this.$router.push({ name: "MyVideos" });
-            return response;
-          },
-          error => {
-            console.log(error);
+      this.$http.put(`video/${this.video.id}`, this.video).then(
+        response => {
+          if (this.newImageFile) {
+            this.uploadFile(
+              this.newImageFile,
+              "image",
+              this.video.id + ".jpeg"
+            );
           }
-        );
+
+          if (this.newVideoFile)
+            this.uploadFile(this.newVideoFile, "video", this.video.id + ".mp4");
+
+          this.$router.push({ name: "MyVideos" });
+          return response;
+        },
+        error => {
+          console.log(error);
+        }
+      );
     },
     uploadFile: function(file, fileType, filename) {
       if (file.length === 0) {

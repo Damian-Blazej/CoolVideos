@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     fetchLatestVideos() {
-      this.$http.get("api/video/latest?n=3").then(result => {
+      this.$http.get("video/latest?n=3").then(result => {
         this.videos = result.data;
       });
     }

@@ -163,8 +163,7 @@ export default {
       this.currentPageSize = pageSize;
       this.currentCategory = category;
       this.currentQuery = query;
-      let url =
-        `video/search?categoryID=${category}&pageSize=${pageSize}&pageNumber=${pageNum}`;
+      let url = `video/search?categoryID=${category}&pageSize=${pageSize}&pageNumber=${pageNum}`;
       if (searchQuery) url += "&query=" + searchQuery;
 
       this.$http.get(url).then(res => {

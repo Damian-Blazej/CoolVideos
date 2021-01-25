@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     login() {
-      this.$http.post("api/token", this.credential).then(
+      this.$http.post("token", this.credential).then(
         result => {
           this.$store.dispatch("login", {
             token: result.body.token,

@@ -45,7 +45,7 @@ export default {
       this.$router.push({ path: `/video/${this.videoId}` });
     },
     deleteVideo() {
-      this.$http.delete(`api/video/${this.videoId}`).then(
+      this.$http.delete(`video/${this.videoId}`).then(
         response => {
           if (response.ok) this.deleted = true;
         },
