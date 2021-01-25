@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     openVideo: function(id) {
-      this.$router.push({ path: `/video/${id}` });
+      this.$router.push({ name: "Video", params: { index: id } });
     }
   },
   filters: {

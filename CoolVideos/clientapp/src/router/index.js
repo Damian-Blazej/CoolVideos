@@ -29,7 +29,7 @@ const routes = [
     component: Home
   },
   {
-    path: "/video/:index",
+    path: "/videos/:index",
     name: "Video",
     component: Video,
     beforeEnter: (to, from, next) => {
@@ -46,7 +46,7 @@ const routes = [
     component: Videos
   },
   {
-    path: "/video",
+    path: "/videos",
     name: "ListVideos",
     component: ListVideos
   },
@@ -61,19 +61,19 @@ const routes = [
     component: Register
   },
   {
-    path: "/video/my/list",
+    path: "/videos/my",
     name: "MyVideos",
     component: MyVideos,
     beforeEnter: ifAuthenticated
   },
   {
-    path: "/video/my/new",
+    path: "/videos/create",
     name: "NewVideo",
     component: NewVideo,
     beforeEnter: ifAuthenticated
   },
   {
-    path: "/video/my/edit/:id",
+    path: "/video/:id/edit",
     name: "EditVideo",
     component: EditVideo,
     beforeEnter: (to, from, next) => {

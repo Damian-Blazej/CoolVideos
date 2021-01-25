@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import VideoInfo from "@/components/VideoInfo";
+import VideoInfo from "../../components/VideoInfo";
 
 export default {
   name: "Index.vue",
