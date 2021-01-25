@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -43,19 +45,26 @@ export default {
         this.$router.push({ name: "PageNotFound" });
       } else {
         this.video = res.data;
-        this.checkIfUserLikedVideo();
+        if (this.userId) {
+          this.checkIfUserLikedVideo();
+        }
       }
     });
   },
+  computed: mapGetters(["userId"]),
   methods: {
     toggleLike: function() {
+      if (!this.userId) {
+        this.$router.push({ name: 'Login' });
+        return;
+      }
       if (this.didUserLikeVideo) this.deleteLike();
       else this.giveLike();
     },
     giveLike: function() {
       this.$http
         .post("like", {
-          userID: this.$store.getters.userId,
+          userID: this.userId,
           videoID: this.video.id
         })
         .then(res => res.body)
@@ -73,7 +82,7 @@ export default {
       this.$http
         .delete("like", {
           body: {
-            userID: this.$store.getters.userId,
+            userID: this.userId,
             videoID: this.video.id
           }
         })
@@ -90,7 +99,7 @@ export default {
     },
     checkIfUserLikedVideo: function() {
       this.$http
-        .get(`like/video/${this.video.id}/user/${this.$store.getters.userId}`)
+        .get(`like/video/${this.video.id}/user/${this.userId}`)
         .then(res => (this.didUserLikeVideo = res.data.liked));
     }
   }
