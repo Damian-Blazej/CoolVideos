@@ -1,5 +1,13 @@
 # CoolVideos
-> Web application, based on ASP.NET Core and Vue.js for viewing and uploading videos.
+> Web application, based on ASP.NET Core and Vue.js for watching and uploading videos.
+
+## Table of contents
+* [Authors](#authors)
+* [License](#license)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Features](#features)
+* [Screenshots](#screenshots)
 
 ## Authors
 * [Blazej Tempski](https://github.com/jaheyy)
@@ -26,3 +34,22 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-NoDer
 * Vue-slide-up-down 2.0.1,
 * Vuelidate 0.7.6,
 * Vuex 3.4.0
+
+## Setup
+To setup a project, you need to clone the repo or download its content and open up the main folder in Microsoft Visual Studio with ASP.NET installed. Next step is install node modules using npm install command in /clientapp.
+
+## Features
+List of ready features
+* Authentication
+* Searching videos
+* Watching videos
+* CRUD for owner of videos
+* Giving like to video
+* Error handling
+
+## Screenshots
+<img src="/sc/Home.PNG" width="600"/>
+<img src="/sc/Videos.PNG" width="600"/>
+<img src="/sc/Video2.PNG" width="600"/>
+<img src="/sc/MyVideos.PNG" width="600"/>
+<img src="/sc/AddVideo.PNG" width="600"/>
