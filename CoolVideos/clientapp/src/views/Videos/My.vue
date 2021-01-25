@@ -46,7 +46,7 @@ export default {
   },
   created() {
     //this.$http.get('/api/video/search?pageNumber=1&pageCount=15&userID=51').then(res => { this.videos = res.videos });
-    this.userID = localStorage.getItem("userId");
+    this.userID = this.$store.getters.userId;
     fetchData(
       this.$serverUrl +
         `/api/video/search?pageNumber=1&pageCount=15&userID=${this.userID}`

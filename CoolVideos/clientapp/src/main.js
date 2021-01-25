@@ -1,29 +1,27 @@
 import Vue from "vue";
-import vueResorce from "vue-resource";
+import VueResource from "vue-resource";
 import Vuelidate from "vuelidate";
 import App from "./App.vue";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import router from "./router";
 import "./sass/main.scss";
-import store from "./store";
+import store from "./store/index";
 import VueSlideUpDown from "vue-slide-up-down";
-//import Vuetify from 'vuetify'
 
 Vue.component("vue-slide-up-down", VueSlideUpDown);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
-Vue.use(vueResorce);
+Vue.use(VueResource);
 Vue.use(Vuelidate);
-//Vue.use(Vuetify);
 Vue.config.productionTip = false;
 Vue.prototype.$serverUrl = "http://localhost:44338";
 
 //Ten middleware dodaje header z tokenem
 Vue.http.interceptors.push((request, next) => {
-  if (localStorage.getItem("token")) {
+  if (store.getters.isLogged) {
     request.headers.set(
       "Authorization",
-      "Bearer " + localStorage.getItem("token")
+      "Bearer " + store.getters.token
     );
   }
 

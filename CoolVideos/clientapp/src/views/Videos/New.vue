@@ -129,7 +129,7 @@ export default {
     };
   },
   created() {
-    this.video.userId = localStorage.getItem("userId");
+    this.video.userId = this.$store.getters.userId;
     this.$http.get(this.$serverUrl + "/api/category").then(res => {
       this.categories = res.data;
     });

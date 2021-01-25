@@ -1,17 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@/views/Home/Index.vue";
-import Videos from "@/views/Home/Videos.vue";
-import Video from "@/views/Videos/Index.vue";
-import ListVideos from "@/views/Videos/List.vue";
-import Login from "@/views/Auth/Login.vue";
-import Register from "@/views/Auth/Register.vue";
-import MyVideos from "@/views/Videos/My.vue";
-import EditVideo from "@/views/Videos/Edit.vue";
-import NewVideo from "@/views/Videos/New.vue";
+import Home from "../views/Home/Index.vue";
+import Videos from "../views/Home/Videos.vue";
+import Video from "../views/Videos/Index.vue";
+import ListVideos from "../views/Videos/List.vue";
+import Login from "../views/Auth/Login.vue";
+import Register from "../views/Auth/Register.vue";
+import MyVideos from "../views/Videos/My.vue";
+import EditVideo from "../views/Videos/Edit.vue";
+import NewVideo from "../views/Videos/New.vue";
 import { fetchData } from "../functions/fetch";
-import store from "@/store.js";
-import Error from "@/views/Error/Error.vue";
+import store from "../store/index";
+import Error from "../views/Error/Error.vue";
 
 Vue.use(VueRouter);
 
@@ -80,7 +80,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       fetchData("http://localhost:44338/api/video/" + to.params.id).then(
         data => {
-          if (data.userId.toString() === localStorage.getItem("userId")) {
+          if (data.userId.toString() === store.getters.userId) {
             next();
           } else {
             next("/error/403");

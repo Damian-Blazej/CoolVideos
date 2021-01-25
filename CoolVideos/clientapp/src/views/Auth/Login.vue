@@ -58,11 +58,10 @@ export default {
     login() {
       this.$http.post(this.$serverUrl + "/api/token", this.credential).then(
         result => {
-          if (result.status == 200) {
-            localStorage.setItem("token", result.body.token);
-            localStorage.setItem("userId", result.body.userID);
-            this.$store.dispatch("login", result.body.userID);
-          }
+          this.$store.dispatch("login", {
+            token: result.body.token,
+            userId: result.body.userID
+          });
         },
         () => {
           this.loginStatus = false;

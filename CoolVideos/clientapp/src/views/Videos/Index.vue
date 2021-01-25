@@ -59,7 +59,7 @@ export default {
     giveLike: function() {
       this.$http
         .post(this.$serverUrl + "/api/like", {
-          userID: localStorage.getItem("userId"),
+          userID: this.$store.getters.userId,
           videoID: this.video.id
         })
         .then(res => res.body)
@@ -77,7 +77,7 @@ export default {
       this.$http
         .delete(this.$serverUrl + "/api/like", {
           body: {
-            userID: localStorage.getItem("userId"),
+            userID: this.$store.getters.userId,
             videoID: this.video.id
           }
         })
@@ -95,9 +95,7 @@ export default {
     checkIfUserLikedVideo: function() {
       fetchData(
         this.$serverUrl +
-          `/api/like/video/${this.video.id}/user/${localStorage.getItem(
-            "userId"
-          )}`
+          `/api/like/video/${this.video.id}/user/${this.$store.getters.userId}`
       ).then(res => (this.didUserLikeVideo = res.liked));
     }
   }
