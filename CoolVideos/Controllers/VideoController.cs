@@ -146,9 +146,6 @@ namespace CoolVideos.Controllers
         [HttpPost]
         public async Task<ActionResult<Video>> PostVideo(Video video)
         {
-            video.Uri = string.Concat(video.Id, ".mp4");
-            video.Image = string.Concat(video.Id, ".jpg");
-
             try
             {
                 _context.Videos.Add(video);
@@ -160,6 +157,10 @@ namespace CoolVideos.Controllers
 
             try
             {
+                await _context.SaveChangesAsync();
+                video.Uri = string.Concat(video.Id, ".mp4");
+                video.Image = string.Concat(video.Id, ".jpg");
+                _context.Videos.Update(video);
                 await _context.SaveChangesAsync();
             }
             catch

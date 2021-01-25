@@ -1,6 +1,6 @@
 ﻿<template>
     <div>
-        <div class="bg-secondary text-primary py-5">
+        <div class="bg-light text-primary py-5">
             <b-container>
                 <div class="text-center">
                     <h1 class="font-weight-bold">Czego szukasz?</h1>
@@ -46,10 +46,10 @@
                 </div>
             </div>
             <div class="mt-3 d-flex justify-content-around align-items-center">
-                <b-button @click="prevPage" :disabled="currentPage <= 1" variant="outline-secondary" size="sm" squared>
+                <b-button @click="prevPage" :disabled="currentPage <= 1" variant="outline-warning" size="sm" squared>
                     <b-icon icon="chevron-double-left"></b-icon>
                 </b-button>
-                <b-button @click="nextPage" :disabled="currentNumOfPages <= currentPage" variant="outline-secondary" size="sm" squared>
+                <b-button @click="nextPage" :disabled="currentNumOfPages <= currentPage" variant="outline-warning" size="sm" squared>
                     <b-icon icon="chevron-double-right"></b-icon>
                 </b-button>
             </div>
