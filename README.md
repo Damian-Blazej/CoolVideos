@@ -1,1 +1,28 @@
 # CoolVideos
+> Web application, based on ASP.NET Core and Vue.js for viewing and uploading videos.
+
+## Authors
+* [Blazej Tempski](https://github.com/jaheyy)
+* [Damian Goleniewski](https://github.com/dgoleniewski)
+
+## License
+Copyright (c) 2020 Damian Goleniewski, Błażej Tempski, Arkadiusz Wawrzyniak  
+This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+## Technologies
+### API:
+* ASP.NET Core 3.1,
+* Entity Framework Core 3.1.11,
+* Relational Database MySQL
+
+### Client:
+* Vue.Js 2.6.11,
+* Axios 0.21.1,
+* Bootstrap 4.5.3,
+* Bootstrap-vue 2.21.2,
+* Core-js 3.6.5,
+* Vue-resource 1.5.1,
+* Vue-router 3.2.0,
+* Vue-slide-up-down 2.0.1,
+* Vuelidate 0.7.6,
+* Vuex 3.4.0
