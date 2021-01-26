@@ -1,8 +1,5 @@
 ﻿<template>
-  <b-list-group-item
-    v-if="!deleted"
-    class="d-flex justify-content-between align-items-center"
-  >
+  <b-list-group-item class="d-flex justify-content-between align-items-center">
     <b-img
       @click="openVideo"
       :src="`${$serverUrl}Resources/Images/${imgSrc}`"
@@ -62,11 +59,11 @@ export default {
     },
     deleteVideo() {
       this.$http.delete(`video/${this.videoId}`).then(
-        response => {
-          if (response.ok) this.deleted = true;
+        () => {
+          this.$emit("deleted");
         },
-        error => {
-          console.log("Error deleteting video", error.toString());
+        () => {
+          console.log("Error deleteting video");
         }
       );
     },

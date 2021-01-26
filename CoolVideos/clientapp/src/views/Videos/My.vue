@@ -26,6 +26,7 @@
           <VideoInfo
             v-for="video in videos"
             :key="video.videoId"
+            @deleted="fetchVideos"
             :title="video.title"
             :img-src="video.image"
             :description="video.description"
@@ -53,15 +54,21 @@ export default {
       isLoading: true
     };
   },
-  beforeCreate() {
-    this.$http
-      .get(
-        `video/search?pageNumber=1&pageCount=15&userID=${this.$store.getters.userId}`
-      )
-      .then(res => {
-        this.isLoading = false;
-        this.videos = res.data.videos;
-      });
+  created() {
+    this.fetchVideos();
+  },
+  methods: {
+    fetchVideos() {
+      this.isLoading = true;
+      this.$http
+          .get(
+              `video/search?pageNumber=1&pageCount=15&userID=${this.$store.getters.userId}`
+          )
+          .then(res => {
+            this.isLoading = false;
+            this.videos = res.data.videos;
+          });
+    }
   }
 };
 </script>
