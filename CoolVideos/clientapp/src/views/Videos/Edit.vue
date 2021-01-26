@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-secondary text-primary py-5">
+    <div class="bg-light text-primary py-5">
       <b-container>
         <div class="text-left">
           <h1 class="text-center font-weight-bold">Edytuj wideo</h1>

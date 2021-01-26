@@ -32,6 +32,11 @@
           <div
             class="d-flex justify-content-center align-items-center flex-wrap mt-4"
           >
+            <b-spinner
+              v-if="isLoading"
+              variant="warning"
+              label="Ładowanie..."
+            ></b-spinner>
             <VideoCard
               v-for="video in videos"
               :key="video.videoId"
@@ -59,12 +64,14 @@ export default {
   },
   data() {
     return {
-      videos: null
+      videos: null,
+      isLoading: true
     };
   },
   methods: {
     fetchLatestVideos() {
       this.$http.get("video/latest?n=3").then(result => {
+        this.isLoading = false;
         this.videos = result.data;
       });
     }

@@ -32,18 +32,21 @@
         <div class="mt-3 text-center">
           <h2 class="font-weight-bold">Najnowsze filmy</h2>
           <div
-            class="d-flex justify-content-center align-items-center flex-wrap mt-4"
+            class="d-flex justify-content-center align-items-center flex-wrap my-4"
           >
-            <VideoCard
-              v-for="video in videos"
-              :key="video.videoId"
-              :video-id="video.id"
-              :title="video.title"
-              :img-src="`${$serverUrl}Resources/Images/${video.image}`"
-              :img-alt="video.title + ' image'"
-              :author="video.user.firstName + ' ' + video.user.lastName"
-            >
-            </VideoCard>
+            <b-spinner v-if="areNewestVideosLoading" variant="warning" label="Ładowanie..."></b-spinner>
+            <template v-else>
+              <VideoCard
+                v-for="video in videos"
+                :key="video.videoId"
+                :video-id="video.id"
+                :title="video.title"
+                :img-src="`${$serverUrl}Resources/Images/${video.image}`"
+                :img-alt="video.title + ' image'"
+                :author="video.user.firstName + ' ' + video.user.lastName"
+              >
+              </VideoCard>
+            </template>
           </div>
           <div class="d-flex justify-content-center">
             <b-button
@@ -71,18 +74,21 @@
             </b-nav>
           </div>
           <div
-            class="d-flex justify-content-center align-items-center flex-wrap mt-4"
+            class="d-flex justify-content-center align-items-center flex-wrap my-4"
           >
-            <VideoCard
-              v-for="video in videosByCategory"
-              :key="video.id"
-              :video-id="video.id"
-              :title="video.title"
-              :img-src="`${$serverUrl}Resources/Images/${video.image}`"
-              :img-alt="video.title + ' image'"
-              :author="video.user.firstName + ' ' + video.user.lastName"
-            >
-            </VideoCard>
+            <b-spinner v-if="areCategoriesVideosLoading" variant="warning" label="Ładowanie..."></b-spinner>
+            <template v-else>
+              <VideoCard
+                  v-for="video in videosByCategory"
+                  :key="video.id"
+                  :video-id="video.id"
+                  :title="video.title"
+                  :img-src="`${$serverUrl}Resources/Images/${video.image}`"
+                  :img-alt="video.title + ' image'"
+                  :author="video.user.firstName + ' ' + video.user.lastName"
+              >
+              </VideoCard>
+            </template>
           </div>
           <div class="d-flex justify-content-center">
             <b-button
@@ -110,12 +116,15 @@ export default {
   },
   created() {
     this.$http.get("video/latest?n=6").then(res => {
+      this.areNewestVideosLoading = false;
       this.videos = res.data;
     });
+    this.changeCategory(1);
+  },
+  beforeCreate() {
     this.$http.get("category").then(res => {
       this.categories = res.data;
     });
-    this.changeCategory(1);
   },
   data() {
     return {
@@ -124,13 +133,17 @@ export default {
       selectedCategory: 1,
       numFetchByCategory: 3,
       videosByCategory: [],
-      searchQuery: ""
+      searchQuery: "",
+      areNewestVideosLoading: true,
+      areCategoriesVideosLoading: true
     };
   },
   methods: {
     changeCategory: function(id) {
+      this.areCategoriesVideosLoading = true;
       this.selectedCategory = id;
       this.$http.get(`video/category/${id}?n=3`).then(res => {
+        this.areCategoriesVideosLoading = false;
         this.videosByCategory = res.data;
       });
     },

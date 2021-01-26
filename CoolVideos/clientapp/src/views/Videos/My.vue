@@ -16,15 +16,18 @@
       </b-container>
     </div>
     <div class="mt-5 d-flex flex-column align-items-center">
-      <VideoInfo
-        v-for="video in videos"
-        :key="video.videoId"
-        :title="video.title"
-        :img-src="video.image"
-        :description="video.description"
-        :likes="video.likes"
-        :video-id="video.id"
-      ></VideoInfo>
+      <b-spinner v-if="isLoading" variant="warning" label="Ładowanie..."></b-spinner>
+      <template v-else>
+        <VideoInfo
+          v-for="video in videos"
+          :key="video.videoId"
+          :title="video.title"
+          :img-src="video.image"
+          :description="video.description"
+          :likes="video.likes"
+          :video-id="video.id"
+        ></VideoInfo>
+      </template>
     </div>
   </div>
 </template>
@@ -40,13 +43,15 @@ export default {
   data() {
     return {
       videos: [],
-      userID: 1
+      userID: 1,
+      isLoading: true
     };
   },
   beforeCreate() {
     this.$http
       .get(`video/search?pageNumber=1&pageCount=15&userID=${this.$store.getters.userId}`)
       .then(res => {
+        this.isLoading = false;
         this.videos = res.data.videos;
       });
   }

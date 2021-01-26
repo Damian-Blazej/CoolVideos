@@ -67,16 +67,19 @@
         <div
           class="d-flex justify-content-center align-items-center flex-wrap mt-4"
         >
-          <VideoCard
-            v-for="video in videos"
-            :key="video.videoId"
-            :video-id="video.id"
-            :title="video.title"
-            :img-src="`${$serverUrl}Resources/Images/${video.image}`"
-            :img-alt="video.title + ' image'"
-            :author="video.user.firstName + ' ' + video.user.lastName"
-          >
-          </VideoCard>
+          <b-spinner v-if="isLoading" variant="warning" label="Ładowanie..."></b-spinner>
+          <template v-else>
+            <VideoCard
+              v-for="video in videos"
+              :key="video.videoId"
+              :video-id="video.id"
+              :title="video.title"
+              :img-src="`${$serverUrl}Resources/Images/${video.image}`"
+              :img-alt="video.title + ' image'"
+              :author="video.user.firstName + ' ' + video.user.lastName"
+            >
+            </VideoCard>
+          </template>
         </div>
       </div>
       <div class="mt-3 d-flex justify-content-around align-items-center">
@@ -150,7 +153,8 @@ export default {
       currentPageSize: 15,
       currentTotalVideoCount: 1,
       currentCategory: 0,
-      currentQuery: ""
+      currentQuery: "",
+      isLoading: true
     };
   },
   methods: {
@@ -158,6 +162,7 @@ export default {
       this.selectedCategory = id;
     },
     searchVideos(query, category, pageNum, pageSize) {
+      this.isLoading = true;
       let searchQuery = query.trim();
       this.currentPage = pageNum;
       this.currentPageSize = pageSize;
@@ -167,6 +172,7 @@ export default {
       if (searchQuery) url += "&query=" + searchQuery;
 
       this.$http.get(url).then(res => {
+        this.isLoading = false;
         this.videos = res.data.videos;
         this.currentTotalVideoCount = res.data.videoListCount;
       });

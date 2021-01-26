@@ -37,7 +37,7 @@ export default {
       didUserLikeVideo: true
     };
   },
-  created() {
+  beforeCreate() {
     this.$http.get("video/" + this.$route.params.index).then(res => {
       if (res.status === 404) {
         this.$router.push({ name: "PageNotFound" });
