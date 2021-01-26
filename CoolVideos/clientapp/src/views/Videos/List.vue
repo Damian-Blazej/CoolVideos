@@ -67,7 +67,11 @@
         <div
           class="d-flex justify-content-center align-items-center flex-wrap mt-4"
         >
-          <b-spinner v-if="isLoading" variant="warning" label="Ładowanie..."></b-spinner>
+          <b-spinner
+            v-if="isLoading"
+            variant="warning"
+            label="Ładowanie..."
+          ></b-spinner>
           <template v-else>
             <VideoCard
               v-for="video in videos"

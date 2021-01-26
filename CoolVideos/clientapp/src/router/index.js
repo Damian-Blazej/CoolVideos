@@ -10,7 +10,8 @@ import MyVideos from "../views/Videos/My.vue";
 import EditVideo from "../views/Videos/Edit.vue";
 import NewVideo from "../views/Videos/New.vue";
 import store from "../store/index";
-import Error from "../views/Error/Error.vue";
+import NotFound from "../views/Error/NotFound";
+import Unauthorized from "../views/Error/Unauthorized";
 
 Vue.use(VueRouter);
 
@@ -73,7 +74,7 @@ const routes = [
     beforeEnter: ifAuthenticated
   },
   {
-    path: "/video/:id/edit",
+    path: "/videos/:id/edit",
     name: "EditVideo",
     component: EditVideo,
     beforeEnter: (to, from, next) => {
@@ -81,23 +82,20 @@ const routes = [
         if (res.data.userId.toString() === store.getters.userId) {
           next();
         } else {
-          next("/error/403");
+          next({ name: "Unauthorized" });
         }
       });
     }
   },
   {
-    path: "/error/:code",
-    name: "Error",
-    component: Error
+    path: "/unauthorized",
+    name: "Unauthorized",
+    component: Unauthorized
   },
   {
     path: "*",
     name: "PageNotFound",
-    component: Error,
-    beforeEnter: (to, from, next) => {
-      next("/error/404");
-    }
+    component: NotFound
   }
 ];
 

@@ -13,10 +13,17 @@
     />
     <div class="d-flex align-items-center">
       <h5 class="mb-0">{{ title }}</h5>
-      <b-badge class="ml-3 p-1" variant="warning" pill>😎🤙 {{ likes }}</b-badge>
+      <b-badge class="ml-3 p-1" variant="warning" pill
+        >😎🤙 {{ likes }}</b-badge
+      >
     </div>
     <div>
-      <b-button @click="showConfirmBox" variant="danger" pill class="mr-3" size="sm"
+      <b-button
+        @click="showConfirmBox"
+        variant="danger"
+        pill
+        class="mr-3"
+        size="sm"
         ><b-icon-trash></b-icon-trash> Delete</b-button
       >
       <b-button

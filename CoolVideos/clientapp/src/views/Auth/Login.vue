@@ -31,9 +31,7 @@
         >Zaloguj</b-button
       >
       <div>
-        <label id="errorLogin" v-if="loginStatus === false">
-          Błąd logowania</label
-        >
+        <label class="text-danger" v-if="loginError"> Niepoprawne dane</label>
       </div>
       <router-link to="/register" class="my-2"
         >Nie masz jeszcze u nas konta? Zarejestruj się</router-link
@@ -51,22 +49,23 @@ export default {
         email: "",
         password: ""
       },
-      loginStatus: null
+      loginError: false
     };
   },
   methods: {
     login() {
-      this.$http.post("token", this.credential).then(
-        result => {
+      this.loginError = false;
+      this.$http
+        .post("token", this.credential)
+        .then(result => {
           this.$store.dispatch("login", {
             token: result.body.token,
             userId: result.body.userID
           });
-        },
-        () => {
-          this.loginStatus = false;
-        }
-      );
+        })
+        .catch(() => {
+          this.loginError = true;
+        });
     },
     register() {
       this.$router.push({ name: "Register" });

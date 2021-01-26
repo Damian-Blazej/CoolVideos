@@ -34,7 +34,11 @@
           <div
             class="d-flex justify-content-center align-items-center flex-wrap my-4"
           >
-            <b-spinner v-if="areNewestVideosLoading" variant="warning" label="Ładowanie..."></b-spinner>
+            <b-spinner
+              v-if="areNewestVideosLoading"
+              variant="warning"
+              label="Ładowanie..."
+            ></b-spinner>
             <template v-else>
               <VideoCard
                 v-for="video in videos"
@@ -76,16 +80,20 @@
           <div
             class="d-flex justify-content-center align-items-center flex-wrap my-4"
           >
-            <b-spinner v-if="areCategoriesVideosLoading" variant="warning" label="Ładowanie..."></b-spinner>
+            <b-spinner
+              v-if="areCategoriesVideosLoading"
+              variant="warning"
+              label="Ładowanie..."
+            ></b-spinner>
             <template v-else>
               <VideoCard
-                  v-for="video in videosByCategory"
-                  :key="video.id"
-                  :video-id="video.id"
-                  :title="video.title"
-                  :img-src="`${$serverUrl}Resources/Images/${video.image}`"
-                  :img-alt="video.title + ' image'"
-                  :author="video.user.firstName + ' ' + video.user.lastName"
+                v-for="video in videosByCategory"
+                :key="video.id"
+                :video-id="video.id"
+                :title="video.title"
+                :img-src="`${$serverUrl}Resources/Images/${video.image}`"
+                :img-alt="video.title + ' image'"
+                :author="video.user.firstName + ' ' + video.user.lastName"
               >
               </VideoCard>
             </template>

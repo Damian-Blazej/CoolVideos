@@ -94,7 +94,7 @@
         <b-button @click="register" variant="outline-warning" block squared
           >Zarejestruj się</b-button
         >
-        <p class="typo__p" v-if="submitStatus === 'ERROR'">
+        <p class="text-danger text-center mt-4" v-if="submitError">
           Proszę wypełnić poprawnie.
         </p>
       </div>
@@ -119,7 +119,7 @@ export default {
         lastName: "",
         password: ""
       },
-      submitStatus: null
+      submitError: false
     };
   },
   validations: {
@@ -148,15 +148,12 @@ export default {
   },
   methods: {
     register() {
-      console.log("object");
       if (this.$v.$invalid) {
-        this.submitStatus = "ERROR";
+        this.submitError = true;
       } else {
-        this.$http.post("user", this.credential).then(resoult => {
-          if (resoult.status == 204) {
+        this.$http.post("user", this.credential).then(result => {
+          if (result.status === 204) {
             this.$router.push({ name: "Login" });
-          } else {
-            console.log(resoult);
           }
         });
       }

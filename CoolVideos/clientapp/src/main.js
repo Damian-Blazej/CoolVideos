@@ -28,11 +28,6 @@ Vue.http.interceptors.push((request, next) => {
     const statusCode = response.status;
     if (statusCode === 401) {
       router.push({ name: "Login" });
-      return;
-    }
-    const statusCodeGroup = Math.floor(statusCode / 100);
-    if (statusCodeGroup === 4 || statusCodeGroup === 5) {
-      router.push({ path: "/error/" + statusCode });
     }
   });
 });
