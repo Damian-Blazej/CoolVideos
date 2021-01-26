@@ -1,32 +1,35 @@
 ﻿<template>
-  <div
+  <b-list-group-item
     v-if="!deleted"
-    class="video-info w-75 py-1 pl-1 pr-3 mt-2 d-flex justify-content-between align-items-center"
+    class="d-flex justify-content-between align-items-center"
   >
-    <img
-      class="img-video-link"
+    <b-img
+      rounded="true"
       @click="openVideo"
       :src="`${$serverUrl}Resources/Images/${imgSrc}`"
-      style="height: 100px;"
+      height="100"
+      width="100"
+      style="object-fit: contain;"
     />
-    <h5 class="mb-0">{{ title }}</h5>
-    <div
-      class="video-info-buttons d-flex justify-content-between align-items-center"
-    >
-      <b-button pill variant="warning">😎🤙 {{ likes }}</b-button>
-      <b-button @click="showConfirmBox" variant="danger" pill
+    <div class="d-flex align-items-center">
+      <h5 class="mb-0">{{ title }}</h5>
+      <b-badge class="ml-3 p-1" variant="warning" pill>😎🤙 {{ likes }}</b-badge>
+    </div>
+    <div>
+      <b-button @click="showConfirmBox" variant="danger" pill class="mr-3" size="sm"
         ><b-icon-trash></b-icon-trash> Delete</b-button
       >
       <b-button
         variant="primary"
+        size="sm"
         pill
         :to="{ name: 'EditVideo', params: { id: videoId.toString() } }"
         ><b-icon-file-text></b-icon-file-text> Edit</b-button
       >
     </div>
-  </div>
+  </b-list-group-item>
 </template>
-.
+
 <script>
 export default {
   name: "VideoInfo",
@@ -66,8 +69,9 @@ export default {
           size: "sm",
           buttonSize: "sm",
           okVariant: "danger",
-          okTitle: "YES",
-          cancelTitle: "NO",
+          cancelVariant: "primary",
+          okTitle: "Tak",
+          cancelTitle: "Nie",
           footerClass: "p-2",
           centered: true
         })

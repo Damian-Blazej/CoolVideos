@@ -15,18 +15,20 @@
         </div>
       </b-container>
     </div>
-    <div class="mt-5 d-flex flex-column align-items-center">
+    <div class="mt-5 container d-flex flex-column align-items-center">
       <b-spinner v-if="isLoading" variant="warning" label="Ładowanie..."></b-spinner>
       <template v-else>
-        <VideoInfo
-          v-for="video in videos"
-          :key="video.videoId"
-          :title="video.title"
-          :img-src="video.image"
-          :description="video.description"
-          :likes="video.likes"
-          :video-id="video.id"
-        ></VideoInfo>
+        <b-list-group class="w-100">
+            <VideoInfo
+                v-for="video in videos"
+                :key="video.videoId"
+                :title="video.title"
+                :img-src="video.image"
+                :description="video.description"
+                :likes="video.likes"
+                :video-id="video.id"
+            ></VideoInfo>
+        </b-list-group>
       </template>
     </div>
   </div>
