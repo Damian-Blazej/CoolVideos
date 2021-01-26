@@ -2,7 +2,7 @@
   <div>
     <b-navbar
       toggleable="lg"
-      type="warning"
+      type="light"
       variant="warning"
       class="shadow-sm py-3"
       fixed="top"
