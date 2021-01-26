@@ -4,12 +4,12 @@
     class="d-flex justify-content-between align-items-center"
   >
     <b-img
-      rounded="true"
       @click="openVideo"
       :src="`${$serverUrl}Resources/Images/${imgSrc}`"
       height="100"
       width="100"
       style="object-fit: contain;"
+      class="video-image"
     />
     <div class="d-flex align-items-center">
       <h5 class="mb-0">{{ title }}</h5>
