@@ -46,7 +46,7 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "nav",
+  name: "Navbar",
   computed: mapGetters(["isLogged"]),
   methods: {
     logout() {

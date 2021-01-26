@@ -13,10 +13,9 @@
             <b-input-group class="mt-3 w-50 mx-auto" size="lg">
               <b-form-input
                 v-model="searchQuery"
-                style="border-radius: 0;"
               ></b-form-input>
               <b-input-group-append>
-                <b-button type="submit" variant="primary" squared
+                <b-button type="submit" variant="primary"
                   ><b-icon icon="search"></b-icon
                 ></b-button>
               </b-input-group-append>
@@ -27,7 +26,6 @@
           <b-button
             @click="showSearchOptions = !showSearchOptions"
             variant="outline-primary"
-            squared
             class="font-weight-bold"
           >
             Pokaż opcje wyszukiwania
@@ -90,18 +88,16 @@
         <b-button
           @click="prevPage"
           :disabled="currentPage <= 1"
-          variant="outline-warning"
+          variant="outline-primary"
           size="sm"
-          squared
         >
           <b-icon icon="chevron-double-left"></b-icon>
         </b-button>
         <b-button
           @click="nextPage"
           :disabled="currentNumOfPages <= currentPage"
-          variant="outline-warning"
+          variant="outline-primary"
           size="sm"
-          squared
         >
           <b-icon icon="chevron-double-right"></b-icon>
         </b-button>

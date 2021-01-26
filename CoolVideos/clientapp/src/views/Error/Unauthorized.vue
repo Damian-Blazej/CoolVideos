@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Error from "./Error";
+import Error from "../../components/Error";
 export default {
   name: "Unauthorized",
   components: { Error }

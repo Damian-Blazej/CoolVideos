@@ -1,6 +1,6 @@
 ﻿$theme-colors: ( 
     "primary": #031926, 
-    "secondary": #468189, 
+    "secondary": #468189,
     "success": #77aca2, 
     "info": #9dbebb, 
     "fizz": #f4e9cd,
@@ -20,31 +20,14 @@ nav {
     padding-left: 1rem !important;
 }
 
-input, textarea, select {
-    border-radius: 0 !important;
-}
-
 textarea {
     padding-right: 20px;
     overflow-y: hidden !important;
-}
-.border-danger {
-    border-color: var(--danger);
-    border-width: 3px;
 }
 
 .router-view {
     min-height: calc( 100vh - 78px - 144px - 48px );
 }
 
-.modal-content {
-    border-radius: 0 !important;
-}
-
-.modal-footer {
-    button {
-        border-radius: 0 !important;
-    }
-}
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';

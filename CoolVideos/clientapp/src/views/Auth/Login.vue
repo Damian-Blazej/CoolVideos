@@ -8,7 +8,6 @@
         v-model="credential.email"
         type="email"
         placeholder="Email"
-        style="border-radius: 0;"
         class="my-2"
       >
       </b-form-input>
@@ -17,7 +16,6 @@
         v-model="credential.password"
         type="password"
         placeholder="Password"
-        style="border-radius: 0;"
         class="my-2"
       >
       </b-form-input>
@@ -26,7 +24,7 @@
         v-on:click="login"
         variant="outline-warning"
         block
-        squared
+        pill
         class="mt-3 mb-2"
         >Zaloguj</b-button
       >

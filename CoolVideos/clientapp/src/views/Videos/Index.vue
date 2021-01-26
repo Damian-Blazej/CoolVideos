@@ -15,7 +15,6 @@
             :variant="didUserLikeVideo ? 'warning' : 'outline-warning'"
             pill
             size="sm"
-            squared
             class="mr-2"
           >
             😎🤙

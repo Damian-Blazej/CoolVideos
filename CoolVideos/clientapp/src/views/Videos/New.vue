@@ -96,7 +96,7 @@
             id="submitButton"
             @click="saveNewVideo"
             class="w-50 mt-5"
-            squared
+            pill
             variant="primary"
             >Opublikuj</b-button
           >
@@ -148,6 +148,8 @@ export default {
   },
   methods: {
     saveNewVideo: function() {
+      this.$v.$touch();
+
       if (this.$v.$invalid || this.video.categoryId < 1) {
         this.error = "Niepoprawne dane!";
         return;

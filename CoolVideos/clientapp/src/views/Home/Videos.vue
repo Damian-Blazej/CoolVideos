@@ -13,10 +13,9 @@
                 <b-input-group class="mt-3 w-50 mx-auto" size="lg">
                   <b-form-input
                     v-model="searchQuery"
-                    style="border-radius: 0;"
                   ></b-form-input>
                   <b-input-group-append>
-                    <b-button type="submit" variant="primary" squared
+                    <b-button type="submit" variant="primary"
                       ><b-icon icon="search"></b-icon
                     ></b-button>
                   </b-input-group-append>

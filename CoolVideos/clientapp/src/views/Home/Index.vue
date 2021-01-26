@@ -11,7 +11,7 @@
               <b-button
                 id="loginButton"
                 v-if="!this.$store.getters.isLogged"
-                squared
+                pill
                 variant="primary"
                 size="lg"
                 :to="{ name: 'Login' }"

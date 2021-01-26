@@ -91,7 +91,7 @@
         </div>
       </div>
       <div class="mt-3 w-75">
-        <b-button @click="register" variant="outline-warning" block squared
+        <b-button @click="register" variant="outline-warning" block pill
           >Zarejestruj się</b-button
         >
         <p class="text-danger text-center mt-4" v-if="submitError">
@@ -148,14 +148,19 @@ export default {
   },
   methods: {
     register() {
+      this.$v.$touch();
       if (this.$v.$invalid) {
         this.submitError = true;
       } else {
-        this.$http.post("user", this.credential).then(result => {
-          if (result.status === 204) {
+        this.submitError = false;
+        this.$http
+          .post("user", this.credential)
+          .then(() => {
             this.$router.push({ name: "Login" });
-          }
-        });
+          })
+          .catch(() => {
+            this.submitError = true;
+          });
       }
     }
   }

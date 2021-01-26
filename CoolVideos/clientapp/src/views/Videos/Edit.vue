@@ -93,7 +93,7 @@
           <b-button
             @click="saveEditedVideo"
             class="w-50 mt-5"
-            squared
+            pill
             variant="primary"
             >Zapisz</b-button
           >
@@ -159,6 +159,7 @@ export default {
   },
   methods: {
     saveEditedVideo: function() {
+      this.$v.$touch();
       if (this.$v.$invalid) {
         this.error = "Niepoprawne dane!";
         return;
