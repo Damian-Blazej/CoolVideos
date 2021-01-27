@@ -40,6 +40,7 @@
                 id="inline-form-custom-select-pref"
                 class="mb-2 mr-sm-2 mb-sm-0"
                 v-model="video.categoryId"
+                :state="!$v.video.categoryId.$invalid"
               >
                 <b-form-select-option
                   v-for="category in categories"
@@ -61,6 +62,7 @@
               class="mt-2 w-75"
               accept="image/jpeg"
               v-model="newImageFile"
+              :state="video.image || !$v.newImageFile.$invalid"
               placeholder="Wybierz nowe zdjęcie albo upuść je tutaj..."
               drop-placeholder="Upuść zdjęcie tutaj..."
               browse-text="Przeglądaj"
@@ -82,6 +84,7 @@
               class="mt-2"
               accept="video/mp4"
               v-model="newVideoFile"
+              :state="video.uri || !$v.newVideoFile.$invalid"
               placeholder="Wybierz nowe wideo albo upuść je tutaj..."
               drop-placeholder="Upuść wideo tutaj..."
               browse-text="Przeglądaj"
@@ -222,6 +225,9 @@ export default {
       description: {
         required,
         maxLength: maxLength(5000)
+      },
+      categoryId: {
+        required
       }
     }
   }

@@ -61,13 +61,13 @@ export default {
     fetchVideos() {
       this.isLoading = true;
       this.$http
-          .get(
-              `video/search?pageNumber=1&pageCount=15&userID=${this.$store.getters.userId}`
-          )
-          .then(res => {
-            this.isLoading = false;
-            this.videos = res.data.videos;
-          });
+        .get(
+          `video/search?pageNumber=1&pageCount=15&userID=${this.$store.getters.userId}`
+        )
+        .then(res => {
+          this.isLoading = false;
+          this.videos = res.data.videos;
+        });
     }
   }
 };

@@ -40,6 +40,7 @@
                 id="category"
                 class="mb-2 mr-sm-2 mb-sm-0"
                 v-model="video.categoryId"
+                :state="!$v.video.categoryId.$invalid"
               >
                 <b-form-select-option
                   v-for="category in categories"
@@ -62,6 +63,7 @@
               id="imageFile"
               accept="image/jpeg"
               v-model="newImageFile"
+              :state="!$v.newImageFile.$invalid"
               placeholder="Wybierz nowe zdjęcie albo upuść je tutaj..."
               drop-placeholder="Upuść zdjęcie tutaj..."
               browse-text="Przeglądaj"
@@ -84,6 +86,7 @@
               id="videoFile"
               accept="video/mp4"
               v-model="newVideoFile"
+              :state="!$v.newVideoFile.$invalid"
               placeholder="Wybierz nowe wideo albo upuść je tutaj..."
               drop-placeholder="Upuść wideo tutaj..."
               browse-text="Przeglądaj"
@@ -116,7 +119,7 @@ export default {
       video: {
         userId: 0,
         uri: "",
-        categoryId: 0,
+        categoryId: null,
         title: "",
         description: "",
         likes: 0,
@@ -154,24 +157,16 @@ export default {
         this.error = "Niepoprawne dane!";
         return;
       }
-      if (this.newImageFile) {
-        this.video.image = this.video.id + ".jpg";
-      }
 
-      if (this.newVideoFile) {
-        this.video.uri = this.video.id + ".mp4";
-      }
+      this.video.image = this.video.id + ".jpg";
+      this.video.uri = this.video.id + ".mp4";
 
       this.$http.post("video", this.video).then(
         response => {
           const id = response.data.id;
 
-          if (this.newImageFile) {
-            this.uploadFile(this.newImageFile, "image", id + ".jpg");
-          }
-
-          if (this.newVideoFile)
-            this.uploadFile(this.newVideoFile, "video", id + ".mp4");
+          this.uploadFile(this.newImageFile, "image", id + ".jpg");
+          this.uploadFile(this.newVideoFile, "video", id + ".mp4");
 
           this.$router.push({ name: "MyVideos" });
         },
@@ -207,7 +202,16 @@ export default {
       description: {
         required,
         maxLength: maxLength(5000)
+      },
+      categoryId: {
+        required
       }
+    },
+    newImageFile: {
+      required
+    },
+    newVideoFile: {
+      required
     }
   }
 };

@@ -11,9 +11,7 @@
             v-on:keyup.enter="submit"
           >
             <b-input-group class="mt-3 w-50 mx-auto" size="lg">
-              <b-form-input
-                v-model="searchQuery"
-              ></b-form-input>
+              <b-form-input v-model="searchQuery"></b-form-input>
               <b-input-group-append>
                 <b-button type="submit" variant="primary"
                   ><b-icon icon="search"></b-icon
