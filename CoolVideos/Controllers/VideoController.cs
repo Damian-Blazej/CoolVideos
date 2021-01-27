@@ -222,8 +222,8 @@ namespace CoolVideos.Controllers
             try
             {
                 _context.Videos.Remove(video);
-                var imageFile = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "Images", $"{id}.jpg");
-                var videoFile = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "Videos", $"{id}.jpg");
+                var imageFile = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "Images", video.Image);
+                var videoFile = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "Videos", video.Uri);
                 if (System.IO.File.Exists(imageFile))
                     System.IO.File.Delete(imageFile);
                 if (System.IO.File.Exists(videoFile))
