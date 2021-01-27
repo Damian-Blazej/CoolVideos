@@ -25,7 +25,6 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-NoDer
 
 ### Client:
 * Vue.Js 2.6.11,
-* Axios 0.21.1,
 * Bootstrap 4.5.3,
 * Bootstrap-vue 2.21.2,
 * Core-js 3.6.5,
@@ -36,20 +35,24 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-NoDer
 * Vuex 3.4.0
 
 ## Setup
-To setup a project, you need to clone the repo or download its content and open up the main folder in Microsoft Visual Studio with ASP.NET installed. Next step is install node modules using npm install command in /clientapp.
+To setup a project, you need to clone the repo or download its content and open up the main folder in Microsoft Visual Studio with ASP.NET installed. You will also need to configure JWT Tokens and MySQL Database connection in appsettings.json. Next step is install node modules using npm install command in /clientapp. 
 
 ## Features
 List of ready features
-* Authentication
+* Authentication (JWT Tokens and Vuex)
 * Searching videos
 * Watching videos
-* CRUD for owner of videos
-* Giving like to video
+* CRUD for videos (Onwer allowed only)
+* Liking/unliking video
 * Error handling
+* Frontend form validations
 
 ## Screenshots
-<img src="/sc/Home.PNG" width="600"/>
-<img src="/sc/Videos.PNG" width="600"/>
-<img src="/sc/Video2.PNG" width="600"/>
-<img src="/sc/MyVideos.PNG" width="600"/>
-<img src="/sc/AddVideo.PNG" width="600"/>
+<img src="/sc/1.png" width="600"/>
+<img src="/sc/2.png" width="600"/>
+<img src="/sc/3.png" width="600"/>
+<img src="/sc/4.png" width="600"/>
+<img src="/sc/5.png" width="600"/>
+<img src="/sc/6.png" width="600"/>
+<img src="/sc/7.png" width="600"/>
+<img src="/sc/8.png" width="600"/>
