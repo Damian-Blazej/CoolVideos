@@ -35,7 +35,29 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-NoDer
 * Vuex 3.4.0
 
 ## Setup
-To setup a project, you need to clone the repo or download its content and open up the main folder in Microsoft Visual Studio with ASP.NET installed. You will also need to configure JWT Tokens and MySQL Database connection in appsettings.json. Next step is install node modules using npm install command in /clientapp. 
+To setup a project, you need to clone the repo or download its content and open up the main folder in Microsoft Visual Studio with ASP.NET installed. You will also need to configure JWT Tokens and MySQL Database connection in appsettings.json. Example appsettings.json proper configuration:
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "ConnectionStrings": {
+    "MySQL": "Server=localhost;Database=test;Uid=sa;Pwd=password;"
+  },
+  "Jwt": {
+    "Key": "someKey",
+    "Issuer": "Server",
+    "Audience": "Client",
+    "Subject": "AccessToken"
+  },
+  "AllowedHosts": "*"
+}
+```
+Next step is install node modules using npm install command in /clientapp. 
 
 ## Features
 List of ready features
